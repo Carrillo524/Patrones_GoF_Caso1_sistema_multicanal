@@ -1,8 +1,6 @@
-public class ComprobanteHTML {
-
+public class ComprobanteHTML implements Comprobante {
+    @Override
     public void generar(String contenido) {
-        System.out.println(
-            "Generando comprobante HTML: " + contenido
-        );
+        System.out.println("Generando comprobante HTML: " + contenido);
     }
 }
