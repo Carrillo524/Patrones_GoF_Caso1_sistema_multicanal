@@ -30,12 +30,28 @@ class GeneradorComprobanteTest {
     }
 
     @Test
+    @DisplayName("Debe generar comprobante XML correctamente")
+    void testGenerarComprobanteXMLExitoso() {
+        assertDoesNotThrow(() -> {
+            generador.generar("XML", "Factura #003 - Cliente C");
+        });
+    }
+    @Test
+    @DisplayName("Debe generar comprobante JSON correctamente")
+    void testGenerarComprobanteJSONExitoso() {
+        assertDoesNotThrow(() -> {
+            generador.generar("JSON", "Factura #004 - Cliente D");
+        });
+    }
+
+    @Test
     @DisplayName("Debe lanzar IllegalArgumentException cuando el tipo no es soportado")
     void testGenerarComprobanteTipoNoSoportadoLanzaExcepcion() {
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> generador.generar("XML", "Factura #003")
-        );
+                () -> {
+                    generador.generar("CSV", "Factura #003");
+                });
 
         assertEquals("Tipo de comprobante no soportado", exception.getMessage());
     }
